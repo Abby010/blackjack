@@ -1,4 +1,4 @@
 from enum import Enum
 
-class Suit(ENUM):
+class Suit(Enum):
     CLUBS, DIAMOND, HEARTS, SPADES = 'clubs', 'diamonds', 'hearts', 'spades'

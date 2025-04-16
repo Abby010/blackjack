@@ -11,5 +11,3 @@ class Card:
     
     def print(self):
         print(f'The card is a {self.getSuit()} and its value is {self.getValue()}')
-
-    
