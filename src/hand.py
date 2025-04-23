@@ -18,5 +18,11 @@ class Hand:
         return self._cards
     
     def print(self):
+        table = Table(title="Hand")
+        table.add_column("Card", justify="center", style="cyan", no_wrap=True)
+
         for card in self._cards:
-            print(card.getSuit())
+            table.add_row(f"{card.getValue()} of {card.getSuit().value.capitalize()}")
+
+        table.add_row(f"[bold green]Total Score: {self.getScore()}[/bold green]")
+        console.print(table)
