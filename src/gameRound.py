@@ -1,6 +1,7 @@
 from rich.console import Console
 from rich.text import Text
 from rich.rule import Rule
+import time
 
 console = Console()
 
@@ -24,7 +25,10 @@ class GameRound:
     def dealInitialCards(self):
         for _ in range(2):
             self._player.addCard(self._deck.draw())
+            time.sleep(0.5)
             self._dealer.addCard(self._deck.draw())
+            time.sleep(0.5)
+
         
         console.rule("[bold blue]🃏 Your Hand")
         self._player.getHand().print()
@@ -52,10 +56,12 @@ class GameRound:
 
         # Player's turn
         while self._player.makeMove():
+            time.sleep(0.5)
             drawnCard = self._deck.draw()
             console.print(f"[green]You draw: {drawnCard.getValue()} of {drawnCard.getSuit().value.capitalize()}[/green]")
             self._player.addCard(drawnCard)
             console.print(f"[bold green]Current score: {self._player.getHand().getScore()}[/bold green]")
+
 
         if self._player.getHand().getScore() > 21:
             console.print("[bold red]💥 You busted![/bold red]")
@@ -65,9 +71,11 @@ class GameRound:
         # Dealer's turn
         console.rule("[bold red]Dealer's Turn")
         while self._dealer.makeMove():
+            time.sleep(0.5)
             card = self._deck.draw()
             self._dealer.addCard(card)
             console.print(f"[red]Dealer draws: {card.getValue()} of {card.getSuit().value.capitalize()}[/red]")
+
 
         player_score = self._player.getHand().getScore()
         dealer_score = self._dealer.getHand().getScore()
