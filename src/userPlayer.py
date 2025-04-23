@@ -18,5 +18,10 @@ class UserPlayer(Player):
     def makeMove(self):
         if self.getHand().getScore() > 21:
             return False
-        move = input('Draw card? [y/n] ')
-        return move == 'y'
+
+        while True:
+            move = input('🃏 Draw another card? [y/n]: ').strip().lower()
+            if move in ['y', 'n']:
+                return move == 'y'
+            else:
+                print("❗ Please enter 'y' or 'n'.")
